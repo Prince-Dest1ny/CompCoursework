@@ -32,4 +32,7 @@ class Budget():
         self.totalExpense.append([expenseAmt,date,source])
 
     #def Generation():
+
+
+st.title("Budgeteer")
     
