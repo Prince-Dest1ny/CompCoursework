@@ -32,11 +32,27 @@ class Budget():
 
     #def Generation():
 
+category = False
 
 st.title("Budgeteer")
-new = Budget()
-if st.button("New Category",type="secondary"):
-    st.number_input("Category value")
-    st.write('why')
+
+new_budget = Budget()
+category
+category_button = st.button("New Category")
+if category_button and not category:
+    category = True
+else:
+    category = False
+if category:
+    value = st.number_input(
+        "Category value")
+    name = st.text_input(
+        "",
+        label_visibility="collapsed",
+        placeholder="Category name")
+    if st.button("done"):
+        new_budget.categories[name] = value
+        category = False
+
 st.write()
     
