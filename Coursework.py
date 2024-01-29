@@ -22,7 +22,6 @@ class Budget():
             temp = input("What's the " + i + suffix+ " category?")
             temp2 = int(input("What "))
 
-    
     def income(self, inputAmt,date,source,recurring=0):
         self.budget += inputAmt
         self.totalIncome.append([inputAmt,date,source,recurring])
@@ -35,4 +34,5 @@ class Budget():
 
 
 st.title("Budgeteer")
+st.write()
     
