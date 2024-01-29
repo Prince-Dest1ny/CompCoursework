@@ -1,6 +1,7 @@
 import math
 import streamlit as st
-
+import pandas as pd
+import numpy as np
 
 class Budget():
     def __init__(self):
@@ -34,9 +35,8 @@ class Budget():
 
 st.title("Budgeteer")
 new = Budget()
-if st.button("New Category",type="primary"):
+if st.button("New Category",type="secondary"):
+    st.number_input("Category value")
     st.write('why')
-else:
-    st.write("")
 st.write()
     
