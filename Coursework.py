@@ -32,7 +32,7 @@ class Budget():
 
     #def Generation():
 
-category = False
+category = None
 
 st.title("Budgeteer")
 
