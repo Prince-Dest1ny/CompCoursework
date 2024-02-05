@@ -32,27 +32,41 @@ class Budget():
 
     #def Generation():
 
-category = None
-
-st.title("Budgeteer")
-
 new_budget = Budget()
-category
-category_button = st.button("New Category")
-if category_button and not category:
-    category = True
-else:
-    category = False
-if category:
-    value = st.number_input(
-        "Category value")
-    name = st.text_input(
-        "",
-        label_visibility="collapsed",
-        placeholder="Category name")
-    if st.button("done"):
-        new_budget.categories[name] = value
+
+def categoryPage():
+    st.title("Categories")
+    category = None
+    category_button = st.button("New Category")
+    if category_button and not category:
+        category = True
+    else:
         category = False
+    if category:
+        value = st.number_input(
+            "Category value")
+        name = st.text_input(
+            "",
+            label_visibility="collapsed",
+            placeholder="Category name")
+        if st.button("done"):
+            new_budget.categories[name] = value
+            category = False
+    st.table(pd.date_range(new_budget.categories))
+    st.altair_chart()
+
+
+# = Main code = 
+# page selection
+page = 0
+st.sidebar.title("Budgeteer")
+if st.sidebar.button("Categories"):
+    page = 0
+elif st.sidebar.button("Budget"):
+    page = 1
+# Run pages
+if page == 0:
+    categoryPage()
 
 st.write()
     
