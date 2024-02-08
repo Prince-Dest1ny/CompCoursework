@@ -36,8 +36,8 @@ new_budget = Budget()
 
 def categoryPage():
     st.title("Categories")
-    category = None
     category_button = st.button("New Category")
+    category = True
     if category_button and not category:
         category = True
     elif category_button and category:
@@ -52,6 +52,7 @@ def categoryPage():
         if st.button("done"):
             new_budget.categories[name] = value
             category = False
+    new_budget.categories
     st.table(pd.DataFrame(new_budget.categories))
     st.altair_chart()
 
