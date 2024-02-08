@@ -2,6 +2,7 @@ import math
 import streamlit as st
 import pandas as pd
 import numpy as np
+from datetime import date
 
 class Budget():
     def __init__(self):
@@ -50,7 +51,8 @@ def categoryPage():
             label_visibility="collapsed",
             placeholder="Category name")
         if st.button("done"):
-            new_budget.categories[name] = value
+            new_budget.categories[name]
+            new_budget.income(value, date.today(), name)
             category = False
     new_budget.categories
     st.table(pd.DataFrame(data=new_budget.categories))
