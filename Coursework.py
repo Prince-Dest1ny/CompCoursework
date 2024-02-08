@@ -55,8 +55,8 @@ def categoryPage():
             new_budget.income(value, date.today(), name)
             category = False
     new_budget.categories
-    st.table(pd.DataFrame(data=new_budget.categories))
-    st.altair_chart()
+    st.table(pd.DataFrame(data=new_budget.categories, columns=5, )
+    #st.altair_chart()
 
 '''
 def budgetPage():
