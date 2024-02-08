@@ -53,9 +53,14 @@ def categoryPage():
             new_budget.categories[name] = value
             category = False
     new_budget.categories
-    st.table(pd.DataFrame(new_budget.categories))
+    st.table(pd.DataFrame(data=new_budget.categories))
     st.altair_chart()
 
+'''
+def budgetPage():
+    st.title("Budget")
+    budget_table = pd.DataFrame(
+'''
 
 # = Main code = 
 # page selection
