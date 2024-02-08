@@ -56,7 +56,7 @@ def categoryPage():
             category = False
     new_budget.categories
     #st.table(pd.DataFrame(data=new_budget.categories, index = [name], columns=5)
-    st.table(pd.DataFrame(np.random.randn(10, 5), columns=("col %d" % i for i in range(5))))
+    st.table(pd.DataFrame(Budget.income, columns=("col %d" % i for i in range(5))))
     
     #st.altair_chart()
 
