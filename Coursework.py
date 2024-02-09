@@ -35,6 +35,7 @@ class Budget():
 
 new_budget = Budget()
 
+#users make their own categories
 def categoryPage():
     st.title("Categories")
     category_button = st.button("New Category")
@@ -57,6 +58,7 @@ def categoryPage():
     new_budget.categories
     #st.table(pd.DataFrame(data=new_budget.categories, index = [name], columns=5)
     st.table(pd.DataFrame(Budget.totalIncome, columns=("col %d" % i for i in range(5))))
+    
     
     #st.altair_chart()
 
