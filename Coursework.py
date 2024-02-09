@@ -5,6 +5,7 @@ import numpy as np
 from datetime import date
 import time
 
+'''
 class Budget():
     def __init__(self):
         self.value = 0
@@ -36,8 +37,8 @@ class Budget():
         self.totalExpense.append([expenseAmt,date,source])
 
     #def Generation():
+'''
 
-new_budget = Budget()
 
 def categoryPage():
     categories1 = []
