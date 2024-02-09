@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from datetime import date
-import time
+import data
 
 '''
 class Budget():
@@ -56,20 +56,20 @@ def categoryPage():
         if st.button("done"):
             categories1.append(name)
             value1.append(value)
-            #new_budget.categories.append(name)
-            #new_budget.valueArray.append(value)
-            #new_budget.income(value, date.today(), name)
+            #data.categories.append(name)
+            #data.valueArray.append(value)
+            #data.income(value, date.today(), name)
     
      
     st.write(pd.DataFrame({
     'Category Name': categories1,
     'Category Value': value1,
     }))
-    #new_budget.categories
-    #new_budget.initialBudget
-    #new_budget.totalIncome
-    #new_budget.totalExpense
-    #st.table(pd.DataFrame(data=new_budget.categories, index = [name], columns=5)
+    #data.categories
+    #data.initialBudget
+    #data.totalIncome
+    #data.totalExpense
+    #st.table(pd.DataFrame(data=data.categories, index = [name], columns=5)
     #st.table(pd.DataFrame(Budget.totalIncome, columns=("col %d" % i for i in range(5))))
     
     #st.altair_chart()
@@ -86,13 +86,13 @@ def budgetPage():
         budget_value = st.number_input("Budget value")
         budget_name = st.text_input("",label_visibility="collapsed",placeholder="Budget name")
         if st.button("done"):
-            new_budget.budgetCost.append(budget_value)
-            new_budget.budgetName.append(budget_name)
+            data.budgetCost.append(budget_value)
+            data.budgetName.append(budget_name)
             budget_i = False
     
     st.write(pd.DataFrame({
-    'Budget Name': new_budget.budgetName,
-    'Budget Cost': new_budget.budgetCost,
+    'Budget Name': data.budgetName,
+    'Budget Cost': data.budgetCost,
 }))
 
 
