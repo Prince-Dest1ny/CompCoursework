@@ -8,3 +8,4 @@ budgetName = []
 categories = []
 valueArray = []
 page_data = 0
+warning = 30
