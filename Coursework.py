@@ -5,110 +5,81 @@ import numpy as np
 from datetime import date
 import data
 
-'''
-class Budget():
-    def __init__(self):
-        self.value = 0
-        self.initialBudget = 0
-        self.totalIncome = []
-        self.totalExpense = []
-        self.budgetCost = []
-        self.budgetName = []
-        self.categories = []
-        self.valueArray = []
-    
-    def create(self):
-        no = int(input("How many categories are there? "))
-        for i in range(0,no):
-            try:
-                temp = ["st","nd"]
-                suffix = temp[i]
-            except IndexError:
-                suffix = "th"
-            temp = input("What's the " + i + suffix+ " category?")
-            temp2 = int(input("What "))
-
-    def income(self, inputAmt,date,source,recurring=0):
-        self.value += inputAmt
-        self.totalIncome.append([inputAmt,date,source,recurring])
-    
-    def expense(self, expenseAmt,date,source):
-        self.value -= expenseAmt
-        self.totalExpense.append([expenseAmt,date,source])
-
-    #def Generation():
-'''
-
-
+#Pages
 def categoryPage():
-    categories1 = []
-    value1 = []
     st.title("Categories")
-    category_button = st.button("New Category")
     category = True
-#    if category_button and not category:
-#        category = True
-#    elif category_button and category:
-#        category = False
     if category:
-        value = st.number_input("Category value")
-        name = st.text_input("",label_visibility="collapsed",placeholder="Category name")
+        data.totalIncome = st.number_input("Monthly Income")
+        home_cost = st.number_input("Cost to mantain home")
+        transportation_cost = st.number_input("Transportation cost")
         if st.button("done"):
-            categories1.append(name)
-            value1.append(value)
-            #data.categories.append(name)
-            #data.valueArray.append(value)
-            #data.income(value, date.today(), name)
-    
-     
-    st.write(pd.DataFrame({
-    'Category Name': categories1,
-    'Category Value': value1,
-    }))
-    #data.categories
-    #data.initialBudget
-    #data.totalIncome
-    #data.totalExpense
-    #st.table(pd.DataFrame(data=data.categories, index = [name], columns=5)
-    #st.table(pd.DataFrame(Budget.totalIncome, columns=("col %d" % i for i in range(5))))
-    
-    #st.altair_chart()
+            data.initialBudget = data.totalIncome - home_cost - transportation_cost
+            data.budgetLeft = data.initialBudget
+            "Initial Budget:", str(data.initialBudget).split(".")[0]
+    if st.button("Reset Values"):
+        data.value = 0
+        data.initialBudget = 0
+        data.budgetLeft = 0
+        data.totalIncome = 0
+        data.totalExpense = []
+        data.budgetCost = []
+        data.budgetName = []
+        data.categories = []
+        data.valueArray = []
+        data.page_data = 0
+
 
 def budgetPage():
-    st.title("Budget")
-    budget_button = st.button("New Budget")
-    budget_i = True
-    if budget_button and not budget_i:
+    if data.initialBudget == 0:
+        st.warning(":red[Please input a valid income]",icon="⚠️")
+    else:
+        if data.budgetLeft/data.initialBudget < (data.warning/100):
+            st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
+        st.title("Budget")
+        "Initial Budget:", str(data.initialBudget).split(".")[0]
+        "Budget Left:", str(data.budgetLeft).split(".")[0]
         budget_i = True
-    elif budget_button and budget_i:
-        budget_i = False
-    if budget_i:
-        budget_value = st.number_input("Budget value")
-        budget_name = st.text_input("",label_visibility="collapsed",placeholder="Budget name")
-        if st.button("done"):
-            data.budgetCost.append(budget_value)
-            data.budgetName.append(budget_name)
-            budget_i = False
-    
-    st.write(pd.DataFrame({
-    'Budget Name': data.budgetName,
-    'Budget Cost': data.budgetCost,
-}))
+        if budget_i:
+            budget_value = st.number_input("Budget value")
+            budget_name = st.text_input("",label_visibility="collapsed",placeholder="Budget name")
+            if st.button("done"):
+                if budget_value == 0 or budget_name == "":
+                    st.write(":red[Please input a valid value/name]")
+                else:
+                    data.budgetLeft -= budget_value
+                    data.budgetCost.append(budget_value)
+                    data.budgetName.append(budget_name)
+        st.write(pd.DataFrame({
+        'Budget Name': data.budgetName,
+        'Budget Cost': data.budgetCost,
+        }))
 
+def settingsPage():
+    st.title("Settings")
+    data.warning = st.number_input("Percentage at which to display the warning at",placeholder = "30")
+    if st.button("Reset Settings"):
+        data.warning = 30
+            
 
 
 # = Main code = 
-# page selection
-page = 0
+# Page selection
 st.sidebar.title("Budgeteer")
+page = data.page_data
 if st.sidebar.button("Categories"):
     page = 0
-elif st.sidebar.button("Budget"):
+    data.page_data = 0
+if st.sidebar.button("Budget"):
     page = 1
+    data.page_data = 1
+if st.sidebar.button("Settings"):
+    page = 2
+    data.page_data = 2
 # Run pages
 if page == 0:
     categoryPage()
 elif page == 1:
     budgetPage()
-
-    
+elif page == 2:
+    settingsPage()
