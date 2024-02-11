@@ -6,8 +6,8 @@ from datetime import date
 import data
 
 #Pages
-def categoryPage():
-    st.title("Categories")
+def homePage():
+    st.title("Home")
     category = True
     if category:
         data.totalIncome = st.number_input("Monthly Income")
@@ -70,7 +70,7 @@ def settingsPage():
 # Page selection
 st.sidebar.title("Budgeteer")
 page = data.page_data
-if st.sidebar.button("Categories"):
+if st.sidebar.button("Home"):
     page = 0
     data.page_data = 0
 if st.sidebar.button("Budget"):
@@ -81,7 +81,7 @@ if st.sidebar.button("Settings"):
     data.page_data = 2
 # Run pages
 if page == 0:
-    categoryPage()
+    homePage()
 elif page == 1:
     budgetPage()
 elif page == 2:
