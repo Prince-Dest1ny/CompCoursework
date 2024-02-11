@@ -54,6 +54,9 @@ def budgetPage():
         'Budget Name': data.budgetName,
         'Budget Cost': data.budgetCost,
         }))
+        if st.button("Reset Values"):
+            data.budgetCost = []
+            data.budgetName = []
 
 def settingsPage():
     st.title("Settings")
