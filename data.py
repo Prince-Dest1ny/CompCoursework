@@ -1,9 +1,10 @@
-
 value = 0
 initialBudget = 0
-totalIncome = []
+budgetLeft = 0
+totalIncome = 0
 totalExpense = []
 budgetCost = []
 budgetName = []
 categories = []
 valueArray = []
+page_data = 0
