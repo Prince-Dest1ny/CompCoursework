@@ -4,6 +4,13 @@ import pandas as pd
 import numpy as np
 from datetime import date
 import data
+import time
+
+# def budgetResetButtonCallback():
+#     data.budgetCost = []
+#     data.budgetName = []
+    
+    
 
 #Pages
 def homePage():
@@ -16,7 +23,71 @@ def homePage():
         if st.button("done"):
             data.initialBudget = data.totalIncome - home_cost - transportation_cost
             data.budgetLeft = data.initialBudget
+            st.session_state.initialBudget = data.initialBudget
+            st.session_state.budgetLeft = data.budgetLeft
+            #st.session_state.budgetValue = 0
             "Initial Budget:", str(data.initialBudget).split(".")[0]
+
+
+def budgetPage():
+    if 'initialBudget' not in st.session_state:
+        st.session_state.initialBudget = data.initialBudget
+    if 'budgetLeft' not in st.session_state:
+        st.session_state.budgetLeft = data.budgetLeft
+    if 'budgetValue' not in st.session_state:
+        st.session_state.budgetValue = 0
+    # if 'budgetValueArray' not in st.session_state:
+    #     st.session_state.budgetValueArray = []
+    # if 'budgetNameArray' not in st.session_state:
+    #     st.session_state.budgetNameArray = []
+    if data.initialBudget == 0:
+        st.warning(":red[Please input a valid income]",icon="⚠️")
+    else:
+        if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
+            st.session_state.budgetLeft -= st.session_state.budgetValue
+        if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
+            st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
+        st.title("Budget")
+        "Initial Budget:", str(data.initialBudget)
+        "Budget Left:", str(st.session_state.budgetLeft)
+        #"Budget Left:", st.session_state.budgetLeft
+        budget_i = True
+        if budget_i:
+            def budgetButtonCallback():
+                #st.write(st.session_state.budgetName)
+                #st.write(st.session_state.budgetValue)
+                #st.session_state.budgetLeft -= st.session_state.budgetValue
+                
+                if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
+                    st.write(":red[Please input a valid value/name]")
+                elif st.session_state.budgetLeft - st.session_state.budgetValue <= 0:
+                    st.write(":red[Expenditure is over the amount of budget left]")
+                else:
+                    # data.budgetLeft -= budget_value
+                    # st.session_state.budgetValueArray.append(st.session_state.budgetValue)
+                    # st.session_state.budgetNameArray.append(st.session_state.budgetName)
+                    data.budgetCost.append(budget_value)
+                    data.budgetName.append(budget_name)
+            # with st.form(key='budget_form'):
+            with st.form("budget_form"):
+                budget_name = st.text_input("",label_visibility="collapsed",placeholder="Expenditure name",key='budgetName')
+                budget_value = st.number_input("Expenditure value", key='budgetValue')
+                submit = st.form_submit_button('Done', on_click=budgetButtonCallback())
+                
+            # doneButton = st.button(label="Done", on_click=budgetButtonCallback())
+            #st.write(invalid_value)
+        
+        st.write(pd.DataFrame({
+        'Expenditure Name': data.budgetName,
+        'Expenditure Cost': data.budgetCost,
+        }))
+        
+
+def settingsPage():
+    st.title("Settings")
+    data.warning = st.number_input("Percentage at which to display the warning at",value = data.warning)
+    if st.button("Reset Settings"):
+        data.warning = 30
     if st.button("Reset Values"):
         data.value = 0
         data.initialBudget = 0
@@ -28,45 +99,13 @@ def homePage():
         data.categories = []
         data.valueArray = []
         data.page_data = 0
-
-
-def budgetPage():
-    if data.initialBudget == 0:
-        st.warning(":red[Please input a valid income]",icon="⚠️")
-    else:
-        if data.budgetLeft/data.initialBudget < (data.warning/100):
-            st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
-        st.title("Budget")
-        "Initial Budget:", str(data.initialBudget).split(".")[0]
-        "Budget Left:", str(data.budgetLeft).split(".")[0]
-        budget_i = True
-        if budget_i:
-            budget_value = st.number_input("Budget value")
-            budget_name = st.text_input("",label_visibility="collapsed",placeholder="Budget name")
-            if st.button("done"):
-                if budget_value == 0 or budget_name == "":
-                    st.write(":red[Please input a valid value/name]")
-                else:
-                    data.budgetLeft -= budget_value
-                    data.budgetCost.append(budget_value)
-                    data.budgetName.append(budget_name)
-        st.write(pd.DataFrame({
-        'Budget Name': data.budgetName,
-        'Budget Cost': data.budgetCost,
-        }))
-        if st.button("Reset Values"):
-            data.budgetCost = []
-            data.budgetName = []
-
-def settingsPage():
-    st.title("Settings")
-    data.warning = st.number_input("Percentage at which to display the warning at",placeholder = "30")
-    if st.button("Reset Settings"):
-        data.warning = 30
-            
-
+        data.budgetValue = 0
+        
 
 # = Main code = 
+invalid_value = ""
+budget_value = 0
+
 # Page selection
 st.sidebar.title("Budgeteer")
 page = data.page_data
