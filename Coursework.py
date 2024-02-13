@@ -18,7 +18,7 @@ def homePage():
     category = True
     if category:
         data.totalIncome = st.number_input("Monthly Income")
-        home_cost = st.number_input("Cost to mantain home")
+        home_cost = st.number_input("Cost to maintain home")
         transportation_cost = st.number_input("Transportation cost")
         if st.button("done"):
             data.initialBudget = data.totalIncome - home_cost - transportation_cost
@@ -61,7 +61,7 @@ def budgetPage():
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                 elif st.session_state.budgetLeft - st.session_state.budgetValue <= 0:
-                    st.write(":red[Expenditure is over the amount of budget left]")
+                    st.write(":red[Amount spent has exceeded budget!]")
                 else:
                     # data.budgetLeft -= budget_value
                     # st.session_state.budgetValueArray.append(st.session_state.budgetValue)
