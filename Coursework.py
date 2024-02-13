@@ -12,7 +12,7 @@ import time
     
     
 
-#Pages
+#Home page
 def homePage():
     st.title("Home")
     category = True
@@ -28,7 +28,7 @@ def homePage():
             #st.session_state.budgetValue = 0
             "Initial Budget:", str(data.initialBudget).split(".")[0]
 
-
+#Budget page
 def budgetPage():
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
@@ -82,7 +82,7 @@ def budgetPage():
         'Expenditure Cost': data.budgetCost,
         }))
         
-
+#base values before starting
 def settingsPage():
     st.title("Settings")
     data.warning = st.number_input("Percentage at which to display the warning at",value = data.warning)
