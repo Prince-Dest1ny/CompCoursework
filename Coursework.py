@@ -120,6 +120,7 @@ if st.sidebar.button("Home"):
 if data.budgetLeft <= 0:
     page = 0
 else:
+    st.sidebar.button("Budget")
     if st.sidebar.button("Budget"):
         page = 1
         data.page_data = 1
