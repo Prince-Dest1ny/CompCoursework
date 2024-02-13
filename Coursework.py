@@ -32,6 +32,8 @@ def homePage():
 
 #Budget page
 def budgetPage():
+    if data.totalIncome <= 0:
+        st.write(":[One of your values has not been keyed in properly! Please go back to the home page and re-enter it.]")
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
     if 'budgetLeft' not in st.session_state:
