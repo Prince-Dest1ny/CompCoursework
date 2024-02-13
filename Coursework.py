@@ -25,12 +25,13 @@ def homePage():
                 data.budgetLeft = data.initialBudget
                 st.session_state.initialBudget = data.initialBudget
                 st.session_state.budgetLeft = data.budgetLeft
-                return data.budgetLeft
                 #st.session_state.budgetValue = 0
                 if (home_cost + transportation_cost) >= data.totalIncome:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
+                    return data.budgetLeft
                 else:
                     "Initial Budget:", str(data.initialBudget).split(".")[0]
+                    return data.budgetLeft
 
 #Budget page
 def budgetPage():
