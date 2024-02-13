@@ -27,7 +27,7 @@ def homePage():
             st.session_state.budgetLeft = data.budgetLeft
             #st.session_state.budgetValue = 0
             "Initial Budget:", str(data.initialBudget).split(".")[0]
-            if initalBudget <= 0: 
+            if data.initalBudget <= 0: 
                 st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
 
 #Budget page
