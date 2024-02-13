@@ -20,15 +20,15 @@ def homePage():
             data.totalIncome = st.number_input("Monthly Income")
             home_cost = st.number_input("Cost to maintain home")
             transportation_cost = st.number_input("Transportation cost")
-            if st.form_submit_button("done"):
-                data.initialBudget = data.totalIncome - home_cost - transportation_cost
-                data.budgetLeft = data.initialBudget
-                st.session_state.initialBudget = data.initialBudget
-                st.session_state.budgetLeft = data.budgetLeft
-                #st.session_state.budgetValue = 0
-                "Initial Budget:", str(data.initialBudget).split(".")[0]
                 if (home_cost + transportation_cost) >= data.totalIncome:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
+                    if st.form_submit_button("done"):
+                        data.initialBudget = data.totalIncome - home_cost - transportation_cost
+                        data.budgetLeft = data.initialBudget
+                        st.session_state.initialBudget = data.initialBudget
+                        st.session_state.budgetLeft = data.budgetLeft
+                        #st.session_state.budgetValue = 0
+                        "Initial Budget:", str(data.initialBudget).split(".")[0]
 
 #Budget page
 def budgetPage():
