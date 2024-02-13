@@ -28,7 +28,7 @@ def homePage():
                 #st.session_state.budgetValue = 0
                 if (home_cost + transportation_cost) >= data.totalIncome:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
-                    homePage()
+                    st.stop()
                 else:
                     "Initial Budget:", str(data.initialBudget).split(".")[0]
 
