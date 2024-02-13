@@ -115,10 +115,9 @@ page = data.page_data
 if st.sidebar.button("Home"):
     page = 0
     data.page_data = 0
-if data.initialBudget <= 0:
+if data.initialBudget > 0:
     homePage()
-else:
-    if st.sidebar.button("Budget"):
+    st.sidebar.button("Budget"):
         page = 1
         data.page_data = 1
 if st.sidebar.button("Settings"):
