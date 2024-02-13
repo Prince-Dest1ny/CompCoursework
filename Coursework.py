@@ -28,7 +28,6 @@ def homePage():
                 #st.session_state.budgetValue = 0
                 if (home_cost + transportation_cost) >= data.totalIncome:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
-                    st.stop()
                 else:
                     "Initial Budget:", str(data.initialBudget).split(".")[0]
 
@@ -116,9 +115,12 @@ page = data.page_data
 if st.sidebar.button("Home"):
     page = 0
     data.page_data = 0
-if st.sidebar.button("Budget"):
-    page = 1
-    data.page_data = 1
+if data.initialBudget <= 0:
+    homePage()
+else:
+    if st.sidebar.button("Budget"):
+        page = 1
+        data.page_data = 1
 if st.sidebar.button("Settings"):
     page = 2
     data.page_data = 2
