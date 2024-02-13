@@ -117,13 +117,12 @@ page = data.page_data
 if st.sidebar.button("Home"):
     page = 0
     data.page_data = 0
-if data.budgetLeft <= 0:
-    page = 0
-else:
-    st.sidebar.button("Budget")
-    if st.sidebar.button("Budget"):
+if st.sidebar.button("Budget"):
+    if data.initalBudget > 0:
         page = 1
         data.page_data = 1
+    else:
+        page = 0
 if st.sidebar.button("Settings"):
     page = 2
     data.page_data = 2
