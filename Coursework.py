@@ -33,10 +33,12 @@ def homePage():
                     # return data.budgetLeft
                 else:
                     data.initialBudget = data.totalIncome - home_cost - transportation_cost - (data.totalIncome*(savings/100))
+                    data.savings = data.totalIncome * (savings/100)
                     data.budgetLeft = data.initialBudget
                     st.session_state.initialBudget = data.initialBudget
                     st.session_state.budgetLeft = data.budgetLeft
                     "Initial Budget: $", str(data.initialBudget)
+                    "Savings: $", str(data.savings)
                     # return data.budgetLeft
 
 #Budget page
