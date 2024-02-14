@@ -44,7 +44,7 @@ def homePage():
 #Budget page
 def budgetPage():
     if 'flag' not in st.session_state:
-        st.session_state.flag = False
+        st.session_state.flag = True
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
     if 'budgetLeft' not in st.session_state:
@@ -74,7 +74,7 @@ def budgetPage():
         if budget_i:
             def budgetButtonCallback():
                 # if st.session_state.budgetLeft - st.session_state.budgetValue < 0:
-                #     st.session_state.flag = True
+                #     st.session_state.flag = False
                 st.session_state.budgetLeft
                 st.session_state.budgetValue
                 st.session_state.flag
@@ -83,7 +83,7 @@ def budgetPage():
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                     return
-                if st.session_state.budgetLeft == 0 and st.session_state.flag == False:
+                if st.session_state.budgetLeft == 0 and st.session_state.flag == True:
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
                     return
