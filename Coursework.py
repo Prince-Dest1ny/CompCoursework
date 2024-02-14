@@ -61,6 +61,8 @@ def budgetPage():
         st.warning("Please fix your budget inputs :3",icon="⚠️")
     else:
         st.session_state.trueBudgetLeft -= st.session_state.budgetValue
+        st.session_state.budgetValue
+        st.session_state.budgetValue
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
         else:
@@ -80,7 +82,6 @@ def budgetPage():
                     st.write(":red[Please input a valid value/name]")
                     return
                 if st.session_state.budgetLeft == 0 and st.session_state.flag != True:
-                    st.warning("test")
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
                     return
