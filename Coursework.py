@@ -83,20 +83,20 @@ def budgetPage():
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                     return
-                if st.session_state.budgetLeft == 0 and st.session_state.flag == True:
+                if st.session_state.budgetLeft >= 0 and st.session_state.flag == True:
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
                     return
                 if st.session_state.budgetLeft < 0:
                     st.warning("Amount inputted has exceeded budget!")
                     return
-                if st.session_state.budgetLeft > 0:
-                    # data.budgetLeft -= budget_value
-                    # st.session_state.budgetValueArray.append(st.session_state.budgetValue)
-                    # st.session_state.budgetNameArray.append(st.session_state.budgetName)
-                    data.budgetCost.append(budget_value)
-                    data.budgetName.append(budget_name)
-                    return
+                # if st.session_state.budgetLeft > 0:
+                #     # data.budgetLeft -= budget_value
+                #     # st.session_state.budgetValueArray.append(st.session_state.budgetValue)
+                #     # st.session_state.budgetNameArray.append(st.session_state.budgetName)
+                #     data.budgetCost.append(budget_value)
+                #     data.budgetName.append(budget_name)
+                #     return
             # with st.form(key='budget_form'):
             with st.form("budget_form"):
                 budget_name = st.text_input("",label_visibility="collapsed",placeholder="Expenditure name",key='budgetName')
