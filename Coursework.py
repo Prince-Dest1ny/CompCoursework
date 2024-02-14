@@ -59,6 +59,7 @@ def budgetPage():
         st.warning("Please fix your budget inputs :3",icon="⚠️")
     else:
         st.session_state.trueBudgetLeft -= st.session_state.budgetValue
+        st.session_state.budgetValue
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
