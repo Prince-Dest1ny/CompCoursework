@@ -43,8 +43,8 @@ def homePage():
 
 #Budget page
 def budgetPage():
-    if 'flag' not in st.session_state:
-        st.session_state.flag = True
+    # if 'flag' not in st.session_state:
+    #     st.session_state.flag = True
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
     if 'budgetLeft' not in st.session_state:
