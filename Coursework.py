@@ -21,7 +21,7 @@ def homePage():
             data.totalIncome = st.number_input("Monthly Income ($)")
             home_cost = st.number_input("Cost to maintain home ($)")
             transportation_cost = st.number_input("Transportation cost ($)")
-            savings = st.number_input("Percentage of salary you wish to save ($):")
+            savings = st.number_input("Percentage of salary you wish to save (%):")
             if st.form_submit_button("done"):
                 # data.initialBudget = data.totalIncome - home_cost - transportation_cost
                 # data.budgetLeft = data.initialBudget
@@ -36,7 +36,7 @@ def homePage():
                     data.budgetLeft = data.initialBudget
                     st.session_state.initialBudget = data.initialBudget
                     st.session_state.budgetLeft = data.budgetLeft
-                    "Initial Budget:", str(data.initialBudget)
+                    "Initial Budget: $", str(data.initialBudget)
                     # return data.budgetLeft
 
 #Budget page
@@ -52,7 +52,7 @@ def budgetPage():
     # if 'budgetNameArray' not in st.session_state:
     #     st.session_state.budgetNameArray = []
     if data.initialBudget == 0:
-        st.warning("Please input a valid income",icon="⚠️")
+        st.warning("Please input a valid income :3",icon="⚠️")
     else:
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
