@@ -81,7 +81,7 @@ def budgetPage():
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                     return
-                if st.session_state.budgetLeft == 0 and st.session_state.flag != True:
+                if st.session_state.budgetLeft == 0 and st.session_state.flag == False:
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
                     return
