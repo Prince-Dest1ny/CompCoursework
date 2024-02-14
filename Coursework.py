@@ -69,6 +69,7 @@ def budgetPage():
         st.title("Budget")
         "Initial Budget:", str(data.initialBudget)
         "Budget Left:", str(st.session_state.budgetLeft)
+        "Debt:", str("Placeholder")
         #"Budget Left:", st.session_state.budgetLeft
         budget_i = True
         if budget_i:
