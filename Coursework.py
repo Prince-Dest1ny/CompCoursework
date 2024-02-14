@@ -62,8 +62,8 @@ def budgetPage():
     else:
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
-        elif st.session_state.budgetLeft - st.session_state.budgetValue < 0:
-            st.session_state.flag = True
+        # elif st.session_state.budgetLeft - st.session_state.budgetValue < 0:
+        #     st.session_state.flag = True
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
             st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
         st.title("Budget")
@@ -73,6 +73,8 @@ def budgetPage():
         budget_i = True
         if budget_i:
             def budgetButtonCallback():
+                if st.session_state.budgetLeft - st.session_state.budgetValue < 0:
+                st.session_state.flag = True
                 st.session_state.budgetLeft
                 st.session_state.budgetValue
                 st.session_state.flag
