@@ -28,7 +28,7 @@ def homePage():
                 # st.session_state.initialBudget = data.initialBudget
                 # st.session_state.budgetLeft = data.budgetLeft
                 #st.session_state.budgetValue = 0
-                if (home_cost + transportation_cost) >= data.totalIncome or savings > 100 or savings < 0:
+                if data.totalIncome - home_cost - transportation_cost - (data.totalIncome*(savings/100)) < 0:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
                     # return data.budgetLeft
                 else:
