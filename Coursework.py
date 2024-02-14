@@ -43,14 +43,16 @@ def homePage():
 
 #Budget page
 def budgetPage():
+    if 'flag' not in st.session_state:
+        st.session_state.flag = False
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
     if 'budgetLeft' not in st.session_state:
         st.session_state.budgetLeft = data.budgetLeft
     if 'budgetValue' not in st.session_state:
         st.session_state.budgetValue = 0
-    if 'trueBudgetLeft' not in st.session_state:
-        st.session_state.trueBudgetLeft = data.budgetLeft
+    # if 'trueBudgetLeft' not in st.session_state:
+    #     st.session_state.trueBudgetLeft = data.budgetLeft
     # if 'budgetValueArray' not in st.session_state:
     #     st.session_state.budgetValueArray = []
     # if 'budgetNameArray' not in st.session_state:
@@ -63,6 +65,8 @@ def budgetPage():
         st.session_state.budgetValue
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
+        else:
+            st.session_state.flag = True
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
             st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
         st.title("Budget")
@@ -73,13 +77,12 @@ def budgetPage():
         if budget_i:
             def budgetButtonCallback():
                 st.session_state.budgetLeft
-                st.session_state.trueBudgetLeft
                 if st.session_state.budgetLeft == 0:
                     st.warning("Budget left has reached 0!")
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                     return
-                if st.session_state.budgetLeft == 0 and st.session_state.trueBudgetLeft == 0:
+                if st.session_state.budgetLeft == 0 and st.session_state.flag != True:
                     st.warning("Budget left has reached 0!")
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
