@@ -78,13 +78,13 @@ def budgetPage():
                 if st.session_state.budgetValue <= 0 or st.session_state.budgetName == "":
                     st.write(":red[Please input a valid value/name]")
                     return
-                if st.session_state.budgetLeft < 0:
-                    st.warning("Amount inputted has exceeded budget!")
-                    return
                 if st.session_state.budgetLeft == 0 and st.session_state.trueBudgetLeft == 0:
                     st.warning("Budget left has reached 0!")
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
+                    return
+                if st.session_state.budgetLeft < 0:
+                    st.warning("Amount inputted has exceeded budget!")
                     return
                 if st.session_state.budgetLeft > 0:
                     # data.budgetLeft -= budget_value
