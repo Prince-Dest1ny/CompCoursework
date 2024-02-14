@@ -8,30 +8,36 @@ import time
 
 # def budgetResetButtonCallback():
 #     data.budgetCost = []
-#     data.budgetName = []
+
     
     
 
 #Home page
 def homePage():
+    st.title("Budgeteerer")
     with st.form("Home"):
         category = True
         if category:
             data.totalIncome = st.number_input("Monthly Income ($)")
             home_cost = st.number_input("Cost to maintain home ($)")
             transportation_cost = st.number_input("Transportation cost ($)")
+            savings = st.number_input("Percentage of salary you wish to save ($):")
             if st.form_submit_button("done"):
-                data.initialBudget = data.totalIncome - home_cost - transportation_cost
-                data.budgetLeft = data.initialBudget
-                st.session_state.initialBudget = data.initialBudget
-                st.session_state.budgetLeft = data.budgetLeft
+                # data.initialBudget = data.totalIncome - home_cost - transportation_cost
+                # data.budgetLeft = data.initialBudget
+                # st.session_state.initialBudget = data.initialBudget
+                # st.session_state.budgetLeft = data.budgetLeft
                 #st.session_state.budgetValue = 0
                 if (home_cost + transportation_cost) >= data.totalIncome:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
-                    return data.budgetLeft
+                    # return data.budgetLeft
                 else:
-                    "Initial Budget:", str(data.initialBudget).split(".")[0]
-                    return data.budgetLeft
+                    "Initial Budget:", str(data.initialBudget)
+                    data.initialBudget = data.totalIncome - home_cost - transportation_cost
+                    data.budgetLeft = data.initialBudget
+                    st.session_state.initialBudget = data.initialBudget
+                    st.session_state.budgetLeft = data.budgetLeft
+                    # return data.budgetLeft
 
 #Budget page
 def budgetPage():
