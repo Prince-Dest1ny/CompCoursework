@@ -112,7 +112,7 @@ invalid_value = ""
 budget_value = 0
 
 # Page selection
-st.sidebar.title("Budgeteer")
+st.sidebar.title("Budgeteerer")
 page = data.page_data
 if st.sidebar.button("Home"):
     page = 0
