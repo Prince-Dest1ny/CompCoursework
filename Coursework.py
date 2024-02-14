@@ -52,7 +52,7 @@ def budgetPage():
     # if 'budgetNameArray' not in st.session_state:
     #     st.session_state.budgetNameArray = []
     if data.initialBudget == 0:
-        st.warning("Please input a valid income :3",icon="⚠️")
+        st.warning("Please fix your budget inputs :3",icon="⚠️")
     else:
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
