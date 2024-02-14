@@ -73,7 +73,7 @@ def budgetPage():
         budget_i = True
         if budget_i:
             def budgetButtonCallback():
-                if st.session_state.budgetLeft - st.session_state.budgetValue < 0:
+                    if st.session_state.budgetLeft - st.session_state.budgetValue < 0:
                 st.session_state.flag = True
                 st.session_state.budgetLeft
                 st.session_state.budgetValue
