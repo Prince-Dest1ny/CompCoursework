@@ -77,7 +77,7 @@ def budgetPage():
                     st.warning("Amount inputted has exceeded budget!")
                 elif st.session_state.budgetLeft <= 0:
                     st.warning("Budget left has reached 0!")
-                elif st.session_state.budgetLeft - st.session_state.budgetValue = 0:
+                elif st.session_state.budgetLeft - st.session_state.budgetValue == 0:
                     data.budgetCost.append(budget_value)
                     data.budgetName.append(budget_name)
                 else:
