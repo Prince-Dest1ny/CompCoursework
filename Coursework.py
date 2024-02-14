@@ -45,6 +45,8 @@ def homePage():
 def budgetPage():
     # if 'flag' not in st.session_state:
     #     st.session_state.flag = True
+    if 'debt' not in st.session_state:
+        st.session_state.debt = 0
     if 'initialBudget' not in st.session_state:
         st.session_state.initialBudget = data.initialBudget
     if 'budgetLeft' not in st.session_state:
@@ -62,6 +64,8 @@ def budgetPage():
     else:
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
+        else:
+            st.session_state.debt += st.session_state.budgetValue
         # elif st.session_state.budgetLeft - st.session_state.budgetValue < 0:
         #     st.session_state.flag = True
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
@@ -69,7 +73,7 @@ def budgetPage():
         st.title("Budget")
         "Initial Budget:", str(data.initialBudget)
         "Budget Left:", str(st.session_state.budgetLeft)
-        "Debt:", str("Placeholder")
+        "Debt:", str(st.session_state.debt)
         #"Budget Left:", st.session_state.budgetLeft
         budget_i = True
         if budget_i:
