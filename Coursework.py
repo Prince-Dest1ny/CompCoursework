@@ -32,11 +32,11 @@ def homePage():
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
                     # return data.budgetLeft
                 else:
-                    "Initial Budget:", str(data.initialBudget)
-                    data.initialBudget = data.totalIncome - home_cost - transportation_cost
+                    data.initialBudget = data.totalIncome - home_cost - transportation_cost - (data.totalIncome*(savings/100))
                     data.budgetLeft = data.initialBudget
                     st.session_state.initialBudget = data.initialBudget
                     st.session_state.budgetLeft = data.budgetLeft
+                    "Initial Budget:", str(data.initialBudget)
                     # return data.budgetLeft
 
 #Budget page
