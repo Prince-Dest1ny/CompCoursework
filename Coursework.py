@@ -74,7 +74,7 @@ def budgetPage():
         if budget_i:
             def budgetButtonCallback():
                 st.session_state.budgetLeft
-                st.session_state.budgetLeft
+                st.session_state.budgetValue
                 st.session_state.flag
                 if st.session_state.budgetLeft == 0:
                     st.warning("Budget left has reached 0!")
