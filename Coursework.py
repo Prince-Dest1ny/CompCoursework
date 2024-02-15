@@ -85,7 +85,7 @@ def budgetPage():
         }))
         
 #base values before starting
-#declan's code
+#matthias + declan's code
 def settingsPage():
     st.title("Settings")
     data.warning = st.number_input("Percentage at which to display the warning at",value = data.warning)
