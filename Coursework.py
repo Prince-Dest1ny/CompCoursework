@@ -64,8 +64,10 @@ def budgetPage():
     else:
         if st.session_state.budgetLeft - st.session_state.budgetValue >= 0:
             st.session_state.budgetLeft -= st.session_state.budgetValue
+        elif st.session_state.budgetLeft < st.session_state.budgetValue:
+            data.budgetValue - data.budgetLeft
         else:
-            st.session_state.debt += st.session_state.budgetValue - data.initialBudget
+            st.session_state.debt += st.session_state.budgetValue
         # elif st.session_state.budgetLeft - st.session_state.budgetValue < 0:
         #     st.session_state.flag = True
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
