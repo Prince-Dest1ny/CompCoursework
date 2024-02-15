@@ -6,15 +6,13 @@ from datetime import date
 import data
 import time
 
-# def budgetResetButtonCallback():
-#     data.budgetCost = []
-
     
     
 
 #Home page
+#declan's code
 def homePage():
-    st.title("Budgeteerer")
+    st.title("Budgeteer")
     with st.form("Home"):
         category = True
         if category:
@@ -23,14 +21,9 @@ def homePage():
             transportation_cost = st.number_input("Transportation cost ($)")
             savings = st.number_input("Percentage of salary you wish to save (%):")
             if st.form_submit_button("done"):
-                # data.initialBudget = data.totalIncome - home_cost - transportation_cost
-                # data.budgetLeft = data.initialBudget
-                # st.session_state.initialBudget = data.initialBudget
-                # st.session_state.budgetLeft = data.budgetLeft
-                #st.session_state.budgetValue = 0
+                #ethan's code
                 if data.totalIncome - home_cost - transportation_cost - (data.totalIncome*(savings/100)) < 0:
                     st.write(":red[You may have keyed in one or more variable wrongly! Please re-key in your values.]")
-                    # return data.budgetLeft
                 else:
                     data.initialBudget = data.totalIncome - home_cost - transportation_cost - (data.totalIncome*(savings/100))
                     data.savings = data.totalIncome * (savings/100)
@@ -39,12 +32,10 @@ def homePage():
                     st.session_state.budgetLeft = data.budgetLeft
                     "Initial Budget: $", str(data.initialBudget)
                     "Savings: $", str(data.savings)
-                    # return data.budgetLeft
 
 #Budget page
+#Declan's code
 def budgetPage():
-    # if 'flag' not in st.session_state:
-    #     st.session_state.flag = True
     if 'debt' not in st.session_state:
         st.session_state.debt = 0
     if 'initialBudget' not in st.session_state:
@@ -53,12 +44,6 @@ def budgetPage():
         st.session_state.budgetLeft = data.budgetLeft
     if 'budgetValue' not in st.session_state:
         st.session_state.budgetValue = 0
-    # if 'trueBudgetLeft' not in st.session_state:
-    #     st.session_state.trueBudgetLeft = data.budgetLeft
-    # if 'budgetValueArray' not in st.session_state:
-    #     st.session_state.budgetValueArray = []
-    # if 'budgetNameArray' not in st.session_state:
-    #     st.session_state.budgetNameArray = []
     if data.initialBudget == 0:
         st.warning("Please fix your budget inputs :3",icon="⚠️")
     else:
@@ -66,17 +51,16 @@ def budgetPage():
             st.session_state.budgetLeft -= st.session_state.budgetValue
         else:
             st.session_state.debt += st.session_state.budgetValue - st.session_state.budgetLeft
-        # elif st.session_state.budgetLeft - st.session_state.budgetValue < 0:
-        #     st.session_state.flag = True
         if st.session_state.budgetLeft/st.session_state.initialBudget < (data.warning/100):
             st.warning(f"Budget left is less than {data.warning}% of total budget",icon="⚠️")
+        #ethan's code
         st.title("Budget")
         "Initial Budget:", str(data.initialBudget)
         "Budget Left:", str(st.session_state.budgetLeft)
         "Debt: $", str(st.session_state.debt)
-        #"Budget Left:", st.session_state.budgetLeft
         budget_i = True
         if budget_i:
+            #declan's code
             def budgetButtonCallback():
                 if st.session_state.budgetLeft == 0:
                     st.warning("Budget left has reached 0!")
@@ -90,28 +74,18 @@ def budgetPage():
                 if st.session_state.budgetLeft < 0:
                     st.warning("Amount inputted has exceeded budget!")
                     return
-                # if st.session_state.budgetLeft > 0:
-                #     # data.budgetLeft -= budget_value
-                #     # st.session_state.budgetValueArray.append(st.session_state.budgetValue)
-                #     # st.session_state.budgetNameArray.append(st.session_state.budgetName)
-                #     data.budgetCost.append(budget_value)
-                #     data.budgetName.append(budget_name)
-                #     return
-            # with st.form(key='budget_form'):
             with st.form("budget_form"):
                 budget_name = st.text_input("",label_visibility="collapsed",placeholder="Expenditure name",key='budgetName')
                 budget_value = st.number_input("Expenditure value", key='budgetValue')
                 submit = st.form_submit_button('Done', on_click=budgetButtonCallback())
-                
-            # doneButton = st.button(label="Done", on_click=budgetButtonCallback())
-            #st.write(invalid_value)
-        
+
         st.write(pd.DataFrame({
         'Expenditure Name': data.budgetName,
         'Expenditure Cost': data.budgetCost,
         }))
         
 #base values before starting
+#declan's code
 def settingsPage():
     st.title("Settings")
     data.warning = st.number_input("Percentage at which to display the warning at",value = data.warning)
@@ -131,22 +105,18 @@ def settingsPage():
         data.budgetValue = 0
         
 
-# = Main code = 
+
 invalid_value = ""
 budget_value = 0
 
 # Page selection
-st.sidebar.title("Budgeteerer")
+#matthias's code
+st.sidebar.title("Budgeteer")
 page = data.page_data
 if st.sidebar.button("Home"):
     page = 0
     data.page_data = 0
 if st.sidebar.button("Budget"):
-    # if data.budgetLeft > 0:
-    #     page = 1
-    #     data.page_data = 1
-    # else:
-    #     page = 0
     page = 1
     data.page_data = 1
 if st.sidebar.button("Settings"):
