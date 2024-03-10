@@ -12,7 +12,7 @@ import time
 #Home page
 #declan's code
 def homePage():
-    st.title("Budgeteer")
+    st.markdown("# :rainbow[Budgeteer]")
     with st.form("Home"):
         category = True
         if category:
